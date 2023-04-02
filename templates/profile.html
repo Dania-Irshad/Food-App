@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row">
+
+    <aside class="col-md-4 col-lg-3 col-sm-12" id="home-aside">
+        <div class="card user-card">
+            <div>
+                <a href="/users/{{ g.user.id }}" class="card-link">
+                    <img src="{{ g.user.image_url }}" alt="Image for {{ g.user.username }}" class="card-image">
+                    <p>@{{ g.user.username }}</p>
+                </a>
+            </div>
+        </div>
+    </aside>
+</div>
+
+{% endblock %}
