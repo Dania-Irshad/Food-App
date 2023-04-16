@@ -39,11 +39,11 @@
         <li><a href="/login">Log in</a></li>
         {% else %}
         <li>
-          <a href="/users/{{ g.user.id }}">
+          <a href="/user/{{ g.user.id }}">
             <img src="{{ g.user.image_url }}" alt="{{ g.user.username }}">
           </a>
         </li>
-        <li><a href="#">Favorites</a></li>
+        <li><a href="/favorites">Favorites</a></li>
         <li><a href="/about">About</a></li>
         <li><a href="/logout">Log out</a></li>
         {% endif %}

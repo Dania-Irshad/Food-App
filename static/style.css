@@ -61,6 +61,7 @@ iframe {
   border-radius: 50px;
   margin-bottom: 10px;
   background-color: #e65728;
+  color: black !important;
 }
 
 .btn:hover {
@@ -210,7 +211,7 @@ nav+.container {
 
 /* ========================== Signup/Login */
 
-p {
+#create-account-wrap p, #login-account-wrap p {
   position: relative;
 }
 
@@ -240,7 +241,8 @@ input {
   border-radius: 4px;
 }
 
-#create-account-wrap {
+#create-account-wrap, 
+#login-account-wrap {
   background-color: #eeedf1;
   color: #8a8b8e;
   font-size: 14px;
@@ -250,14 +252,6 @@ input {
 }
 
 /* ========================== Homepage */
-
-#warbler-hero {
-  height: 360px;
-  margin-top: -16px;
-  opacity: 0.7;
-  background-size: cover;
-  background-position: top center;
-}
 
 .full-width {
   width: 100vw;
@@ -294,6 +288,8 @@ input {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   margin: 10px;
+  background-color: transparent;
+  border-color: transparent;
 }
 
 .card:hover {
@@ -353,4 +349,11 @@ input {
   height: auto;
   display: block;
   margin: 20px auto 30px;
+}
+
+.profile-name {
+  font-size: 36px;
+  font-weight: bold;
+  margin-top: 20px;
+  cursor: default;
 }
