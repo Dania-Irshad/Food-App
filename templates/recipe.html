@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>
+    {{ recipe.strMeal }}
+</h1>
+<img class="recipe-img" src="{{ recipe.strMealThumb }}" alt="{{ recipe.strCategory }}">
+
+<div class="ingredients">
+    <p>
+        Category: {{ recipe.strCategory }} <br>
+        Origin: {{ recipe.strArea }}
+    </p>
+    <h2>Ingredients</h2>
+    <ul>
+        {% for ingredient, measure in ingredient_dict %}
+        <li>{{ ingredient }} - {{ measure }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="directions">
+    <h2>Directions</h2>
+    {{ recipe.strInstructions }}
+</div>
+<div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video_code }}" title="YouTube video player"
+        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+</div>
+
+{% endblock %}

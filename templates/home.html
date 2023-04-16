@@ -2,23 +2,22 @@
 
 {% block content %}
 
-<div class="row">
-
-    <aside class="col-md-4 col-lg-3 col-sm-12" id="home-aside">
-        <div id="warbler-hero" class="full-width" style="background-image: url('../images/food-app.jpg');"></div>
-        <div class="card user-card">
-            <div>
-                <a href="/users/{{ g.user.id }}" class="card-link">
-                    <img src="{{ g.user.image_url }}" alt="Image for {{ g.user.username }}" class="card-image">
-                    <p>@{{ g.user.username }}</p>
-                </a>
+<h1>CATEGORIES</h1>
+<div class="col-sm-12">
+    <div class="row">
+        {% for category in categories %}
+        <div class="col-lg-4 col-md-6 col-12">
+            <div class="card">
+                <img src="{{ category.strCategoryThumb }}" alt="{{ category.strCategory }}">
+                <div class="container">
+                    <h2><a class="category-name" href="/category/{{ category.strCategory }}">{{ category.strCategory
+                            }}</a>
+                    </h2>
+                </div>
             </div>
         </div>
-    </aside>
-    <div>
-        <h5>homepage</h5>
+        {% endfor %}
     </div>
-
 </div>
 
 {% endblock %}

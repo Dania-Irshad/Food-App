@@ -2,10 +2,54 @@
 
 body {
   background-color: #FFBF00 !important;
+  font-family: Arial, sans-serif;
+  text-align: center;
 }
 
 body.error-404 {
   background-color: #FFBF00;
+}
+
+h1 {
+  font-family: 'Roboto Slab', serif;
+  font-size: 50px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 1.2;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+h2 {
+  font-weight: 300;
+  text-align: center;
+}
+
+h2 a:link,
+a:visited {
+  color: #e65728;
+  text-decoration: none;
+  display: inline-block;
+}
+
+h2 a:hover,
+a:active {
+  opacity: 0.7;
+}
+
+p {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+}
+
+iframe {
+  width: 640;
+  height: 360;
 }
 
 .form-control {
@@ -41,7 +85,7 @@ body.error-404 {
 }
 
 .navbar a:hover {
-  color: #1c94e0;
+  color: #FFBF00;
 }
 
 .navbar-brand {
@@ -60,6 +104,14 @@ body.error-404 {
 .nav>li>a>img {
   width: 32px;
   border-radius: 32px;
+}
+
+nav .search-btn {
+  background-color: transparent;
+}
+
+nav .search-btn:hover {
+  background-color: transparent;
 }
 
 ul.nav.navbar-nav {
@@ -103,7 +155,7 @@ nav form.navbar-form {
 #search:active,
 #search:focus {
   box-shadow: none;
-  border: 2px solid #007bff;
+  border: 2px solid #e65728;
 }
 
 /* on "onboarding" pages (signup & login), the navbar is
@@ -112,7 +164,6 @@ nav form.navbar-form {
  */
 
 .onboarding>.navbar {
-  background-image: url("/static/images/nav-bg.png");
   background-size: 100% 100%;
 }
 
@@ -158,11 +209,6 @@ nav+.container {
 
 
 /* ========================== Signup/Login */
-
-h2 {
-  font-weight: 300;
-  text-align: center;
-}
 
 p {
   position: relative;
@@ -239,4 +285,72 @@ input {
 
 .message-404 .form-inline input {
   flex: 1;
+}
+
+
+/* ====================== Cards */
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  margin: 10px;
+}
+
+.card:hover {
+  box-shadow: 0 16px 32px 0 rgba(0, 0, 0, 0.2);
+}
+
+.container {
+  padding: 2px 16px;
+}
+
+/* ====================== Recipe */
+
+.directions {
+  background-color: transparent;
+  border-color: #333;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.directions h2 {
+  font-size: 35px;
+  color: #333;
+}
+
+.ingredients li {
+  text-align: left;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.ingredients p {
+  font-size: 20px;
+}
+
+.ingredients h2 {
+  font-size: 35px;
+  color: #333;
+  text-align: left;
+}
+
+.recipe-img {
+  max-width: 50%;
+  height: auto;
+  display: block;
+  margin: 20px auto 30px;
+}
+
+/* ====================== About */
+
+.about-img {
+  max-width: 35%;
+  height: auto;
+  display: block;
+  margin: 20px auto 30px;
 }
