@@ -6,6 +6,27 @@ from flask_sqlalchemy import SQLAlchemy
 bcrypt = Bcrypt()
 db = SQLAlchemy()
 
+class Favorite(db.Model):
+    """Mapping user favorites"""
+
+    __tablename__ = 'favorites' 
+
+    id = db.Column(
+        db.Integer,
+        primary_key=True
+    )
+
+    recipe_name = db.Column(
+        db.Text,
+        nullable=False,
+    )
+
+    user_id = db.Column(
+        db.Integer,
+        db.ForeignKey('users.id', ondelete='cascade')
+    )
+
+    user = db.relationship('User')
 
 class User(db.Model):
     """User in the system."""
@@ -38,6 +59,8 @@ class User(db.Model):
         db.Text,
         nullable=False,
     )
+
+    favorites = db.relationship('Favorite')
 
     def __repr__(self):
         return f"<User #{self.id}: {self.username}, {self.email}>"

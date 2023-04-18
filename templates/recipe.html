@@ -5,6 +5,11 @@
 <h1>
     {{ recipe.strMeal }}
 </h1>
+<form method="POST" action="/user/add_favorite/{{ recipe.strMeal }}">
+    <button class="btn btn-lg">
+        <i class="fa fa-heart"></i>
+    </button>
+</form>
 <img class="recipe-img" src="{{ recipe.strMealThumb }}" alt="{{ recipe.strCategory }}">
 
 <div class="ingredients">

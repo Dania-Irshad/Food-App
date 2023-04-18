@@ -2,7 +2,7 @@ from flask import Flask, render_template, flash, redirect, session, g, request, 
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
 from forms import UserAddForm, LoginForm, UserEditForm
-from models import db, connect_db, User
+from models import db, connect_db, User, Favorite
 import requests
 
 CURR_USER_KEY = "curr_user"
@@ -24,7 +24,7 @@ connect_db(app)
 
 @app.before_request
 def add_user_to_g():
-    """If user is logged in, add curr user to Flask global."""
+    """If user is logged in, add curr user to Flask global"""
 
     if CURR_USER_KEY in session:
         g.user = User.query.get(session[CURR_USER_KEY])
@@ -34,7 +34,7 @@ def add_user_to_g():
 
 
 def do_login(user):
-    """Log in user."""
+    """Log in user"""
 
     session[CURR_USER_KEY] = user.id
 
@@ -85,7 +85,7 @@ def signup():
 
 @app.route('/login', methods=["GET", "POST"])
 def login():
-    """Handle user login."""
+    """Handle user login"""
 
     form = LoginForm()
 
@@ -105,7 +105,7 @@ def login():
 
 @app.route('/logout')
 def logout():
-    """Handle logout of user."""
+    """Handle logout of user"""
     
     do_logout()
     flash("Successfully Logged out.", 'success')
@@ -129,7 +129,7 @@ def homepage():
 
 @app.errorhandler(404)
 def page_not_found(e):
-    """404 NOT FOUND page."""
+    """404 NOT FOUND page"""
 
     return render_template('404.html'), 404
 
@@ -166,8 +166,24 @@ def get_recipe(recipe_name):
         while recipe["strIngredient" + str(x)] != "" and recipe["strIngredient" + str(x)] != "null":
             ingredient_dict[recipe["strIngredient" + str(x)]] = recipe["strMeasure" + str(x)]
             x += 1
-        print(ingredient_dict.items())
         return render_template('recipe.html', user=user, recipe=recipe, video_code=video_code, ingredient_dict=ingredient_dict.items())
+    else:
+        return redirect('/login')
+    
+@app.route('/user/add_favorite/<recipe_name>', methods=["GET", "POST"])
+def add_fav(recipe_name):
+    """Add favorite"""
+    user = g.user
+    if user:
+        favorite = Favorite.query.filter_by(user_id=g.user.id, recipe_name=recipe_name).first()
+        if favorite:
+            db.session.delete(favorite)
+            db.session.commit()
+        else:
+            new_favorite = Favorite(recipe_name=recipe_name, user_id=g.user.id)
+            db.session.add(new_favorite)
+            db.session.commit()
+        return redirect('/favorites')
     else:
         return redirect('/login')
     
@@ -177,7 +193,7 @@ def get_recipe(recipe_name):
 
 @app.route('/about')
 def about():
-    """Display the about page."""
+    """Display the about page"""
     user = g.user
     if user:
         return render_template('about.html')
@@ -196,7 +212,7 @@ def search():
 
 @app.route('/user/<int:user_id>')
 def user_profile(user_id):
-    """Display user profile."""
+    """Display user profile"""
     user = g.user
     if user:
         curr_user = User.query.get_or_404(user_id)
@@ -207,13 +223,32 @@ def user_profile(user_id):
     else:
         return redirect('/login')
 
+@app.route('/favorites')
+def user_favorties():
+    """Display user favorites"""
+    user = g.user
+    if user:
+        favorites = [fav.recipe_name for fav in user.favorites]
+        recipe_list = []
+        for recipe_name in favorites:
+            res = requests.get(f'https://www.themealdb.com/api/json/v1/1/search.php',
+                           params={'s': recipe_name})
+            data = res.json()
+            recipe = data.get('meals')[0]
+            new_dict = {"strMeal": recipe["strMeal"],
+                        "strMealThumb": recipe["strMealThumb"]}
+            recipe_list.append(new_dict)
+        return render_template('favorites.html', recipe_list=recipe_list)
+    else:
+        return redirect('/login')
+
 
 ##############################################################################
 # Profile
 
 @app.route('/user/<int:user_id>/edit', methods=["GET", "POST"])
 def edit_profile(user_id):
-    """Edit user profile."""
+    """Edit user profile"""
     user = g.user
     if user:
         curr_user = User.query.get_or_404(user_id)
