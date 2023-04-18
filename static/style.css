@@ -351,9 +351,16 @@ input {
   margin: 20px auto 30px;
 }
 
+/* ====================== Profile */
+
 .profile-name {
   font-size: 36px;
   font-weight: bold;
   margin-top: 20px;
   cursor: default;
+}
+
+.profile-img {
+  object-fit: cover;
+  width: 500px;
 }
