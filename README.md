@@ -1,7 +1,7 @@
-#FOODIES
+# FOODIES
 This app is designed to help users find recipes and save their favorite recipes. With a simple and intuitive interface, the Foodies app is the perfect tool for anyone who loves to cook or wants to try out new recipes.
 
-###Functionality:
+### Functionality:
 - User registration and login: Users can create an account and login to access the app's features.
 - Recipe search: Users can search for a  recipe by entering the name of the recipe.
 - Recipe details: Users can click on a recipe from a category to view its details, including ingredients, directions and recipe video.
@@ -14,7 +14,7 @@ This app is designed to help users find recipes and save their favorite recipes.
 - Security: The app will implement appropriate security measures to protect user data and prevent unauthorized access. 
 - API: The app will integrate an external API to provide accurate recipe data.
 
-###User flow:
+### User flow:
 - User arrives at a login page where the user can either login to an existing account or signup with a new account.
 - Once user has logged in, the app homepage with food categories will be displayed.
 - User can select a category view a list of recipes by selecting a food category.
@@ -26,10 +26,10 @@ This app is designed to help users find recipes and save their favorite recipes.
 - User can edit or delete their profile from the profile details page.
 - User can log out by clicking on the logout button on the navbar.
 
-###API used:
+### API used:
 https://www.themealdb.com/api.php
 
-###Technologies stack:
+### Technologies stack:
 - Python
 - Flask
 - SQLAlchemy
